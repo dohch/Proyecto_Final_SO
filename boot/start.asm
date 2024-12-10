@@ -44,13 +44,13 @@ static_ctor_loop:
 	call kmain
 
 static_dtors_loop:
-	mov ebx, start_dtors
+	mov ebx, start_dctors
 	jmp .test
 .body:
 	call [ebx]
-	add ebx,4
+	add ebx, 4
 .test:
-	cmp ebx, end_dtors
+	cmp ebx, end_dctors
 	jb .body
 
 		cli
