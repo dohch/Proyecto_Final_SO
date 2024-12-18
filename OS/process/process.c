@@ -6,13 +6,13 @@
 #include "../memory/memory.h"
 
 struct Process* create_process (char* name, int time, int priority){
-  struct Process *p = (struct Process*)malloc(sizeof(struct Process));
+  struct Process *p = (struct Process*)OS_malloc(sizeof(struct Process));
   p->name = name;
   p->burst_time = time;
   return p;
 }
 void delete_process (struct Process* p){
-  free(p);
+  OS_free(p);
 }
 
 void print_process(struct Process* p){
@@ -27,6 +27,7 @@ void print_process(struct Process* p){
     print(p->name);
     print("\nPriority: ");
     print_num(p->priority);
-    printLine('\n');
+    print('\n');
     print("======================================\n");
+    delete_process(p);
 }

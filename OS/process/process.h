@@ -8,7 +8,7 @@ typedef struct Process{
     int state;
     int quantum_time;
     int priority;
-};
+}
 
 struct Process* create_process(char* name, int time, int priority);
 void print_process(struct Process*);
