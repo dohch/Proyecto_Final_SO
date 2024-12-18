@@ -1,5 +1,5 @@
-C_SOURCES = $(wildcard kernel/*.c include/*.c cpu/*.c)
-HEADERS = $(wildcard kernel/*.h include/*.h cpu/*.h)
+C_SOURCES = $(wildcard process/*.c kernel/*.c include/*.c cpu/*.c memory/*c)
+HEADERS = $(wildcard process/*.h kernel/*.h include/*.h cpu/*.h memory/*.h)
 
 
 loader:
@@ -16,14 +16,16 @@ kern:
 	gcc -m32 -g -ffreestanding -c cpu/kb.c -o cpu/kb.o
 	gcc -m32 -g -ffreestanding -c user/shell/shell.c -o user/shell/shell.o
 	gcc -m32 -g -ffreestanding -c user/taskbar/taskbar.c -o user/taskbar/taskbar.o
+	gcc -m32 -g -ffreestanding -c process/process.c -o process/process.o
+	gcc -m32 -g -ffreestanding -c memory/memory.c -o memory/memory.o
 	gcc -m32 -g -ffreestanding -c kernel/kernel.c -o main.o
 
 link:
-	ld -m elf_i386 -Ttext 0x1000 -o kernel.bin loader.o main.o $(wildcard include/*.o cpu/*.o user/shell/*.o user/taskbar/*.o)
+	ld -m elf_i386 -Ttext 0x1000 -o kernel.bin loader.o main.o $(wildcard memory/*.o process/*.o include/*.o cpu/*.o user/shell/*.o user/taskbar/*.o)
 
 run:
-	qemu-system-x86_64 -kernel kernel.bin -curses
+	qemu-system-x86_64 -kernel kernel.bin -nographic
 clean:
-	rm *.o include/*.o cpu/*.o user/shell/*.o user/taskbar/*.o
+	rm *.o include/*.o cpu/*.o user/shell/*.o user/taskbar/*.o process/*.o memory/*.o
 
 all:loader kern link clean run

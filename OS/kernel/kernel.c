@@ -21,9 +21,6 @@ int i=0;
 for(i=0;i<COLS;i++){
 print("_");
 }
-
-os_about();
 taskbar();
 shell();
-	
 }

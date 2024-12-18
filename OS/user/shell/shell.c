@@ -1,4 +1,5 @@
 #include "shell.h"
+#include "../../process/process.h"
 #include "../../include/print.h"
 #include "../../include/string.h"
 
@@ -34,7 +35,10 @@ void shell(){
 		print("Maya is an x86 based OS\n");			
 		cmd[0]='\n';
 	}
-
+	else if(strcmp("run-process",cmd) == 1){
+		print_process(create_process("pepe",1,2));
+		cmd[0]='\n';
+	}
 	else{
 		print("command not found\n");
 		cmd[0]='\n';
