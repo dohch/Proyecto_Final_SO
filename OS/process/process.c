@@ -1,5 +1,4 @@
 #include "process.h"
-#include <stdlib.h>
 #include <stddef.h>
 
 #include "../include/print.h"
@@ -27,7 +26,7 @@ void print_process(struct Process* p){
     print(p->name);
     print("\nPriority: ");
     print_num(p->priority);
-    print('\n');
+    print("\n");
     print("======================================\n");
     delete_process(p);
 }
