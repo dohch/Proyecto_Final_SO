@@ -1,19 +1,15 @@
-#define RR 5
-#define PROCESS_CPU 1
-#define NULL_PROCESS_CPU 2
-
 #include "process.h"
+#include "../memory/memory.h"
+#include <stddef.h>
 
-struct Stack_Process{
-    struct Process* first
-}stack;
+struct Stack {
+    struct Process* first;
+};
 
-static int state_queue = NULL_PROCESS_CPU;
-
-init_Stack_Process();
-init_Stack_Process(struct Process*);
+void init_Stack_Process();
+struct Process* best_process();
 struct Process* stack_pop();
-void stack_put(struct Process* new_pro);
+void stack_put(struct Process*);
 void Process_Charge();
-
-
+void Print_Stack_Process();
+void RunTestProcess(int);

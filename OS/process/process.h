@@ -1,16 +1,16 @@
 #ifndef PROCESS_H
 #define PROCESS_H
 
-struct Process{
-    int process_id;
-    char* name;
-    int burst_time;     // En ms
-    int state;
-    int quantum_time;
+struct Process {
+    int name;
     int priority;
+    int burst_time;
+    int state;
+    struct Process* next_process;
 };
 
-struct Process* create_process(char* name, int time, int priority);
+struct Process* Create_Process(int, int, int);
+void Delete_Process(struct Process*); 
 void print_process(struct Process*);
 
 #endif
